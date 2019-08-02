@@ -14,13 +14,13 @@ static const char dmenufont[]       = "monospace:size=10";
  */
 static const char col_base00[]      = "#292D3E";
 static const char col_base01[]      = "#444267";
-static const char col_base03[]      = "#676E95";
+static const char col_base02[]      = "#32374D";
 static const char col_base04[]      = "#BFC7D5";
 static const char col_base0C[]      = "#89DDFF";
 static const char col_base0D[]      = "#82AAFF";
 static const char *colors[][3]      = {
 	/*               fg          bg          border   */
-	[SchemeNorm] = { col_base04, col_base01, col_base03 },
+	[SchemeNorm] = { col_base04, col_base01, col_base02 },
 	[SchemeSel]  = { col_base00, col_base0D, col_base0C },
 };
 
