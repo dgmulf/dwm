@@ -63,12 +63,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]     = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *termcmd[] = { "st", NULL };
 static const char *termxcwdcmd[] = { "/bin/sh", "-c", "cd \"$(xcwd)\" && exec st", NULL };
-static const char *browsercmd[] = { "qutebrowser", NULL };
+static const char *browsercmd[] = { "firefox", NULL };
 static const char *filemgrcmd[] = { "st", "-e", "ranger", NULL };
 static const char *filemgrxcwdcmd[] = { "/bin/sh", "-c", "exec st -e ranger \"$(xcwd)\"", NULL };
+static const char *uncluttercmd[] = { "/bin/sh", "-c", "killall unclutter || exec unclutter --timeout 1", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -110,6 +111,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = filemgrcmd } },
 	{ MODKEY|Mod1Mask,              XK_r,      spawn,          {.v = filemgrxcwdcmd } },
+	{ MODKEY,                       XK_u,      spawn,          {.v = uncluttercmd } },
 };
 
 /* button definitions */
