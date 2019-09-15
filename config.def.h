@@ -7,21 +7,14 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
-
-/*
- * Base16 dwm template by Daniel Mulford
- * Dracula scheme by Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)
- */
-static const char col_base00[]      = "#282936";
-static const char col_base01[]      = "#3a3c4e";
-static const char col_base03[]      = "#626483";
-static const char col_base04[]      = "#62d6e8";
-static const char col_base0C[]      = "#a1efe4";
-static const char col_base0D[]      = "#62d6e8";
+static const char col_black[]       = "#282936";
+static const char col_grey[]        = "#44475a";
+static const char col_white[]       = "#f8f8f2";
+static const char col_cyan[]        = "#8be9fd";
 static const char *colors[][3]      = {
 	/*               fg          bg          border   */
-	[SchemeNorm] = { col_base04, col_base01, col_base03 },
-	[SchemeSel]  = { col_base00, col_base0D, col_base0C },
+	[SchemeNorm] = { col_white,  col_black,  col_grey },
+	[SchemeSel]  = { col_white,  col_grey,   col_cyan },
 };
 
 /* tagging */
@@ -62,7 +55,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base01, "-nf", col_base04, "-sb", col_base0D, "-sf", col_base00, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_white, "-sb", col_grey, "-sf", col_white, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
