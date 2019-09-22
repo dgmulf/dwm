@@ -64,12 +64,12 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[] = { "st", NULL };
-static const char *termxcwdcmd[] = { "/bin/sh", "-c", "cd \"$(xcwd)\" && exec st", NULL };
+static const char *termcmd[] = { "urxvt", NULL };
+static const char *termxcwdcmd[] = { "/bin/sh", "-c", "cd \"$(xcwd)\" && exec urxvt", NULL };
 static const char *browsercmd[] = { "qutebrowser", NULL };
 static const char *privatebrowsercmd[] = { "qutebrowser", "--nowindow", ":open --private", NULL };
-static const char *filemgrcmd[] = { "st", "-e", "ranger", NULL };
-static const char *filemgrxcwdcmd[] = { "/bin/sh", "-c", "exec st -e ranger \"$(xcwd)\"", NULL };
+static const char *filemgrcmd[] = { "urxvt", "-e", "ranger", NULL };
+static const char *filemgrxcwdcmd[] = { "/bin/sh", "-c", "exec urxvt -e ranger \"$(xcwd)\"", NULL };
 static const char *uncluttercmd[] = { "/bin/sh", "-c", "killall unclutter || exec unclutter --timeout 1", NULL };
 
 static Key keys[] = {
