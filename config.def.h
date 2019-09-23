@@ -1,12 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:pixelsize=21" };
+static const char dmenufont[]       = "monospace:pixelsize=21";
 static const char col_black[]       = "#282936";
 static const char col_grey[]        = "#44475a";
 static const char col_white[]       = "#f8f8f2";
@@ -32,9 +32,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -44,7 +44,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -57,7 +57,13 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_white, "-sb", col_purple, "-sf", col_black, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[] = { "urxvt", NULL };
+static const char *termxcwdcmd[] = { "/bin/sh", "-c", "cd \"$(xcwd)\" && exec urxvt", NULL };
+static const char *browsercmd[] = { "qutebrowser", NULL };
+static const char *privatebrowsercmd[] = { "qutebrowser", "--nowindow", ":open --private", NULL };
+static const char *filemgrcmd[] = { "urxvt", "-e", "ranger", NULL };
+static const char *filemgrxcwdcmd[] = { "/bin/sh", "-c", "exec urxvt -e ranger \"$(xcwd)\"", NULL };
+static const char *uncluttercmd[] = { "/bin/sh", "-c", "killall unclutter || exec unclutter --timeout 1", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -72,7 +78,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -95,6 +101,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,      quit,           {1} }, 
+	{ MODKEY|Mod1Mask,              XK_Return, spawn,          {.v = termxcwdcmd } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
+	{ MODKEY|Mod1Mask,              XK_w,      spawn,          {.v = privatebrowsercmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = filemgrcmd } },
+	{ MODKEY|Mod1Mask,              XK_r,      spawn,          {.v = filemgrxcwdcmd } },
+	{ MODKEY,                       XK_u,      spawn,          {.v = uncluttercmd } },
 };
 
 /* button definitions */
