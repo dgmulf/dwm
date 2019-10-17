@@ -8,20 +8,15 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
-/*
- * Base16 dwm template by Daniel Mulford
- * Ephemeral scheme by github.com/elenapan
- */
-static const char col_base00[]      = "#323F4E";
-static const char col_base01[]      = "#3D4C5F";
-static const char col_base02[]      = "#3D4C5F";
-static const char col_base04[]      = "#F8F8F2";
-static const char col_base0C[]      = "#87DFEB";
-static const char col_base0D[]      = "#92B6F4";
+static const char col_bg[]          = "#323F4E";
+static const char col_bg_alt[]      = "#3D4C5F";
+static const char col_fg[]          = "#F8F8F2";
+static const char col_sel[]         = "#A1EFD3";
+static const char col_sel_alt[]     = "#87DFEB";
 static const char *colors[][3]      = {
 	/*               fg          bg          border   */
-	[SchemeNorm] = { col_base04, col_base01, col_base02 },
-	[SchemeSel]  = { col_base00, col_base0D, col_base0C },
+	[SchemeNorm] = { col_fg,     col_bg_alt, col_bg_alt },
+	[SchemeSel]  = { col_bg,     col_sel,    col_sel_alt },
 };
 
 /* tagging */
@@ -62,7 +57,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base01, "-nf", col_base04, "-sb", col_base0D, "-sf", col_base00, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg_alt, "-nf", col_fg, "-sb", col_sel, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
