@@ -8,10 +8,11 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_black[]       = "#282936";
-static const char col_grey[]        = "#44475a";
-static const char col_white[]       = "#f8f8f2";
-static const char col_purple[]      = "#bd93f9";
 static const char col_cyan[]        = "#8be9fd";
+static const char col_grey[]        = "#44475a";
+static const char col_pink[]        = "#ff79c6";
+static const char col_purple[]      = "#bd93f9";
+static const char col_white[]       = "#f8f8f2";
 static const char *colors[][3]      = {
 	/*               fg          bg          border   */
 	[SchemeNorm] = { col_white,  col_black,  col_grey },
