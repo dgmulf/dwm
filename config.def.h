@@ -72,6 +72,7 @@ static const char *privatebrowsercmd[] = { "qutebrowser", "--nowindow", ":open -
 static const char *filemgrcmd[] = { "urxvt", "-e", "ranger", NULL };
 static const char *filemgrxcwdcmd[] = { "/bin/sh", "-c", "exec urxvt -e ranger \"$(xcwd)\"", NULL };
 static const char *uncluttercmd[] = { "/bin/sh", "-c", "killall unclutter || exec unclutter --timeout 1", NULL };
+static const char *screenshot[] = { "flameshot", "gui", "-p", "/tmp", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -115,6 +116,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      spawn,          {.v = filemgrcmd } },
 	{ MODKEY|Mod1Mask,              XK_r,      spawn,          {.v = filemgrxcwdcmd } },
 	{ MODKEY,                       XK_u,      spawn,          {.v = uncluttercmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
 };
 
 /* button definitions */
