@@ -56,8 +56,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-modi", "drun,run,keys", "-show", "drun", "-m", dmenumon, NULL };
-static const char *rofiruncmd[] = { "rofi", "-modi", "drun,run,keys", "-show", "run", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
+static const char *dmenudesktopcmd[] = { "j4-dmenu-desktop", "--term=urxvt", NULL };
 static const char *termcmd[] = { "urxvt", NULL };
 static const char *termxcwdcmd[] = { "/bin/sh", "-c", "cd \"$(xcwd)\" && exec urxvt", NULL };
 static const char *browsercmd[] = { "qutebrowser", NULL };
@@ -70,8 +70,8 @@ static const char *screenshot[] = { "flameshot", "gui", "-p", "/tmp", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
-	{ MODKEY|Mod1Mask,              XK_space,  spawn,          {.v = rofiruncmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|Mod1Mask,              XK_space,  spawn,          {.v = dmenudesktopcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -79,7 +79,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
