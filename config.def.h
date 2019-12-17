@@ -74,6 +74,9 @@ static const char *filemgrcmd[] = { "urxvt", "-e", "ranger", NULL };
 static const char *filemgrxcwdcmd[] = { "/bin/sh", "-c", "exec urxvt -e ranger \"$(xcwd)\"", NULL };
 static const char *uncluttercmd[] = { "/bin/sh", "-c", "killall unclutter || exec unclutter --timeout 1", NULL };
 static const char *screenshot[] = { "flameshot", "gui", "-p", "/tmp", NULL };
+static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *volumemute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -118,6 +121,9 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,              XK_r,      spawn,          {.v = filemgrxcwdcmd } },
 	{ MODKEY,                       XK_u,      spawn,          {.v = uncluttercmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeup } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
+	{ 0,                            XF86XK_AudioMute, spawn,   {.v = volumemute } },
 };
 
 /* button definitions */
