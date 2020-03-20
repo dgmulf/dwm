@@ -69,6 +69,7 @@ static const char *screenshot[] = { "flameshot", "gui", "-p", "/tmp", NULL };
 static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *volumemute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *clipmenucmd[] = { "clipmenu", "-m", dmenumon, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -111,6 +112,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      spawn,          {.v = filemgrcmd } },
 	{ MODKEY|Mod1Mask,              XK_r,      spawn,          {.v = filemgrxcwdcmd } },
 	{ MODKEY,                       XK_u,      spawn,          {.v = uncluttercmd } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = clipmenucmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeup } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
