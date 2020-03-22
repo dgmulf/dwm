@@ -69,7 +69,7 @@ static const char *screenshot[] = { "flameshot", "gui", "-p", "/tmp", NULL };
 static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *volumemute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *clipmenucmd[] = { "clipmenu", "-m", dmenumon, NULL };
+static const char *clipmenucmd[] = { "clipmenu", "-m", dmenumon, "-i", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
