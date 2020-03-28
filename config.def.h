@@ -1,12 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:pixelsize=21" };
-static const char dmenufont[]       = "monospace:pixelsize=21";
+static const char *fonts[]          = { "monospace:pixelsize=20" };
+static const char dmenufont[]       = "monospace:pixelsize=20";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -70,6 +70,8 @@ static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", 
 static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *volumemute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *clipmenucmd[] = { "clipmenu", "-m", dmenumon, "-i", NULL };
+static const char *musiccmd[] = { "urxvt", "-e", "cmus", NULL };
+static const char *powercmd[] = { "dmenu-power.sh", "-m", dmenumon, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -86,9 +88,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_F1,     setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_F2,     setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_F3,     setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -113,6 +115,8 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,              XK_r,      spawn,          {.v = filemgrxcwdcmd } },
 	{ MODKEY,                       XK_u,      spawn,          {.v = uncluttercmd } },
 	{ MODKEY,                       XK_c,      spawn,          {.v = clipmenucmd } },
+	{ MODKEY,                       XK_m,      spawn,          {.v = musiccmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = powercmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeup } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
