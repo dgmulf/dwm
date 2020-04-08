@@ -54,30 +54,8 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-/* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
-static const char *dmenudesktopcmd[] = { "j4-dmenu-desktop", "--term=st", NULL };
-static const char *termcmd[] = { "st", NULL };
-static const char *termxcwdcmd[] = { "/bin/sh", "-c", "cd \"$(xcwd)\" && exec st", NULL };
-static const char *browsercmd[] = { "qutebrowser", NULL };
-static const char *privatebrowsercmd[] = { "qutebrowser", "--nowindow", ":open --private", NULL };
-static const char *filemgrcmd[] = { "st", "-e", "lf", NULL };
-static const char *filemgrxcwdcmd[] = { "/bin/sh", "-c", "exec st -e lf \"$(xcwd)\"", NULL };
-static const char *uncluttercmd[] = { "/bin/sh", "-c", "killall unclutter || exec unclutter --timeout 1", NULL };
-static const char *screenshot[] = { "flameshot", "gui", "-p", "/tmp", NULL };
-static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *volumemute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *clipmenucmd[] = { "clipmenu", "-m", dmenumon, "-i", NULL };
-static const char *musiccmd[] = { "st", "-e", "cmus", NULL };
-static const char *powercmd[] = { "dmenu-power.sh", "-m", dmenumon, NULL };
-
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenudesktopcmd } },
-	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -109,19 +87,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,      quit,           {1} }, 
-	{ MODKEY|Mod1Mask,              XK_t,      spawn,          {.v = termxcwdcmd } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
-	{ MODKEY|Mod1Mask,              XK_w,      spawn,          {.v = privatebrowsercmd } },
-	{ MODKEY,                       XK_f,      spawn,          {.v = filemgrcmd } },
-	{ MODKEY|Mod1Mask,              XK_f,      spawn,          {.v = filemgrxcwdcmd } },
-	{ MODKEY,                       XK_u,      spawn,          {.v = uncluttercmd } },
-	{ MODKEY,                       XK_c,      spawn,          {.v = clipmenucmd } },
-	{ MODKEY,                       XK_m,      spawn,          {.v = musiccmd } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = powercmd } },
-	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeup } },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedown } },
-	{ 0,                            XF86XK_AudioMute, spawn,   {.v = volumemute } },
 };
 
 /* button definitions */
@@ -131,7 +96,6 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
